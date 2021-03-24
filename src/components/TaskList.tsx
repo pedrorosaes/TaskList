@@ -16,9 +16,11 @@ export function TaskList() {
 
 
   function handleCreateNewTask() {
+    //  Caso a string esteja vazia ele para a excução e emite o Alert
    if (!newTaskTitle) {
      alert('Digite algo')
    return }
+   // Cria um novo objeto que recebe os valores id, title e isComplete e os adiciona a array tasks
     const newTasks= {
       id: Math.random(),
       title: newTaskTitle,
@@ -29,7 +31,7 @@ export function TaskList() {
   }
 
   function handleToggleTaskCompletion(id: number) {
-    // Altere entre `true` ou `false` o campo `isComplete` de uma task com dado ID
+    //  Alterando valor do isComplete a partir do mapeamento das Ids da array Tasks. O task.map percorre a array buscando a task.id igual a id.
     const completedTasks = tasks.map (tasks => tasks.id === id ? {
       ...tasks, isComplete : !tasks.isComplete
     }: tasks)
@@ -37,6 +39,7 @@ export function TaskList() {
   }
 
   function handleRemoveTask(id: number) {
+    // Adicionamos todos os objetos que possuem ids diferente a id recebida pelo onClick={() => handleRemoveTask(task.id)}> e repassamos a nova array formada para o Tasks
    const filterTaskRemove = tasks.filter(tasks => tasks.id !== id)
   setTasks(filterTaskRemove);
 
